@@ -1,0 +1,19 @@
+{
+  "name": "flightbooking",
+  "version": "1.0.0",
+  "description": "Flight Booking Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Porstmouth-Bath-6-Team-A/FlightBooking.git"
+  },
+  "author": "nz & kho",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Porstmouth-Bath-6-Team-A/FlightBooking/issues"
+  },
+  "homepage": "https://github.com/Porstmouth-Bath-6-Team-A/FlightBooking#readme"
+}
