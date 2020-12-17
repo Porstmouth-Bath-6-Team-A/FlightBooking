@@ -4,11 +4,11 @@ module.exports = {
     getPlaces: async () => {
         return await flightApi.getPlaces();   
     },
-    getCountires: async () => {
-        return await flightApi.getCountries();
+    getCountries: async (language) => {
+        return await flightApi.getCountries(language);
     },
-    getFlights: async() => {
-        return await flightApi.getFlights();
+    getFlights: async(country, currency, language, fromDist, toDist, fromDate, toDate) => {
+        return await flightApi.getFlights(country, currency, language, fromDist, toDist, fromDate, toDate);
     },
     getLanguages: async() => {
         return await flightApi.getLanguages();
