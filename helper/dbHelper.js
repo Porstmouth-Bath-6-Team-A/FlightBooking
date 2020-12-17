@@ -3,7 +3,7 @@ const MongoClient = require('mongodb').MongoClient;
 const url = "mongodb+srv://admin:admin@cluster0.srmns.mongodb.net/flightBooking?retryWrites=true&w=majority";
 
 module.exports = {
-    insert: async (collectionName, document) => {
+    insert: async (collectionName, documents) => {
         let client = new MongoClient(url, { 
             useNewUrlParser: true,
             useUnifiedTopology: true
@@ -15,7 +15,7 @@ module.exports = {
             let db = await client.db('flightBooking');
             let col = await db.collection(collectionName);
 
-            await col.insertOne(document);
+            await col.insertMany(documents);
          
         } catch (e) {
             console.error(e);

@@ -3,30 +3,34 @@ const config = require('../config.json');
 
 module.exports = {
     getPlaces: async () => {
-        let retVal = await got.default.get(config.ApiUrl + '/geo/v1.0?apikey=' + config.ApiKey);
-        return retVal;
+        let response = await got(config.ApiUrl + '/geo/v1.0?apikey=' + config.ApiKey);
+
+        return response.body;
     },
     getFlights: async (country, currency, language, fromDist, toDist, fromDate, toDate) => {
-        let retVal = await got.default.get(config.ApiUrl + '/browseroutes/v1.0' + country + '/' 
-                                                                                + currency + '/' 
-                                                                                + language + '/'  
-                                                                                + fromDist + '/' 
-                                                                                + toDist + '/'
-                                                                                + fromDate + '/'
-                                                                                + toDate + '/'
-                                                                                + '?apikey=' + config.ApiKey);
-        return retVal;
+        let response = await got(config.ApiUrl + '/browseroutes/v1.0/' + country + '/' 
+                                                                       + currency + '/' 
+                                                                       + language + '/'  
+                                                                       + fromDist + '/' 
+                                                                       + toDist + '/'
+                                                                       + fromDate + '/'
+                                                                       + toDate + '/'
+                                                                       + '?apikey=' + config.ApiKey);
+        return response.body;
     },
-    getCountries: async () => {
-        let retVal = await got.default.get(config.ApiUrl + '/v1/countries?apikey=' + config.ApiKey);
-        return retVal;
+    getCountries: async (language) => {
+        let response = await got(config.ApiUrl + '/reference/v1.0/countries/' + language + '?apikey=' + config.ApiKey);
+
+        return response.body;
     },
     getLanguages: async () => {
-        let retVal = await got.default.get(config.ApiUrl + '/v1.0/locales?apikey='+ config.ApiKey);
-        return retVal;
+        let response = await got(config.ApiUrl + '/reference/v1.0/locales?apikey='+ config.ApiKey);
+
+        return response.body;
     },
     getCurrencies: async () =>{
-        let retVal = await got.default.get(config.ApiUrl + '/v1.0/currencies?apikey='+config.ApiKey);
-        return retVal;
+        let response = await got(config.ApiUrl + '/reference/v1.0/currencies?apikey='+config.ApiKey);
+        
+        return response.body;
     }
 }

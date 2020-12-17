@@ -4,7 +4,7 @@ const flightService = require("../FlightBooking/services/flightService");
 const dbHelper = require('../FlightBooking/helper/dbHelper');
 
 app.get('/test', async (req, res) => {
-    await dbHelper.insert('country', {Code: "SG", Name: "SINGAPORE"});
+    await dbHelper.insert('country', [{Code: "SG", Name: "SINGAPORE"}, {Code: "JP", Name: "JAPAN"}]);
 
     let country = await dbHelper.find('country', {}); 
     console.log(country);
@@ -17,6 +17,7 @@ app.get('/test', async (req, res) => {
     console.log('------------');
 
     await dbHelper.delete('country', {Code: "SG"});
+    await dbHelper.delete('country', {Code: "JP"});
 
     country = await dbHelper.find('country', {}); 
     console.log(country);
@@ -26,16 +27,17 @@ app.get('/test', async (req, res) => {
 });
 
 app.get('/home', async (req, res) => {
-    let val = await flightService.getPlaces();
-    console.log(val);
-    val = await flightService.getCountires();
-    console.log(val);
-    val = await flightService.getCurrencies();
-    console.log(val);
-    val = await flightService.getLanguages();
-    console.log(val);
-    val = await flightService.getFlightsInfo();
-    console.log(val);
+    let val;
+    //val = await flightService.getPlaces();
+    //console.log(val);
+    //val = await flightService.getCountires('en-US');
+    //console.log(val);
+    //val = await flightService.getCurrencies();
+    //console.log(val);
+    //val = await flightService.getLanguages();
+    //console.log(val);
+    //val = await flightService.getFlightsInfo();
+    //console.log(val);
     res.send("hello world");
 });
 
