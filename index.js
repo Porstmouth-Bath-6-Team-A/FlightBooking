@@ -26,16 +26,14 @@ app.get('/test', async (req, res) => {
 });
 
 app.get('/home', async (req, res) => {
-    let val = await flightService.getPlaces();
-    console.log(val);
-    val = await flightService.getCountires();
-    console.log(val);
-    val = await flightService.getCurrencies();
+    
+    let val = await flightService.getCurrencies();
     console.log(val);
     val = await flightService.getLanguages();
     console.log(val);
-    val = await flightService.getFlightsInfo();
+    val = await flightService.getCountries('en-US');
     console.log(val);
+
     res.send("hello world");
 });
 
