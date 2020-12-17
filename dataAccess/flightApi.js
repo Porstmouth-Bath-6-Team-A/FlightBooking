@@ -6,15 +6,22 @@ module.exports = {
         let retVal = await got.default.get(config.ApiUrl + '/geo/v1.0?apikey=' + config.ApiKey);
         return retVal;
     },
-    getFlightInfo: async () => {
-        let retVal = await got.default.get(config.ApiUrl + '/v1/flights?apikey=' + config.ApiKey);
+    getFlights: async (country, currency, language, fromDist, toDist, fromDate, toDate) => {
+        let retVal = await got.default.get(config.ApiUrl + '/browseroutes/v1.0' + country + '/' 
+                                                                                + currency + '/' 
+                                                                                + language + '/'  
+                                                                                + fromDist + '/' 
+                                                                                + toDist + '/'
+                                                                                + fromDate + '/'
+                                                                                + toDate + '/'
+                                                                                + '?apikey=' + config.ApiKey);
         return retVal;
     },
     getCountries: async () => {
         let retVal = await got.default.get(config.ApiUrl + '/v1/countries?apikey=' + config.ApiKey);
         return retVal;
     },
-    getLocales: async () => {
+    getLanguages: async () => {
         let retVal = await got.default.get(config.ApiUrl + '/v1.0/locales?apikey='+ config.ApiKey);
         return retVal;
     },

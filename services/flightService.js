@@ -7,11 +7,11 @@ module.exports = {
     getCountires: async () => {
         return await flightApi.getCountries();
     },
-    getFlightsInfo:async() => {
-        return await flightApi.getFlightInfo();
+    getFlights: async() => {
+        return await flightApi.getFlights();
     },
-    getLocales: async() => {
-        return await flightApi.getLocales();
+    getLanguages: async() => {
+        return await flightApi.getLanguages();
     },
     getCurrencies: async() => {
         return await flightApi.getCurrencies();
