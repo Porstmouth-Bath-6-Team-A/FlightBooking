@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Porstmouth-Bath-6-Team-A/FlightBooking#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "got": "^11.8.1"
+    "got": "^10.7.0",
+    "mongodb": "^3.6.3"
   }
 }
