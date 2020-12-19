@@ -28,16 +28,9 @@ app.get('/test', async (req, res) => {
 
 app.get('/home', async (req, res) => {
     let val;
-    //val = await flightService.getPlaces();
-    //console.log(val);
-    //val = await flightService.getCountires('en-US');
-    //console.log(val);
-    //val = await flightService.getCurrencies();
-    //console.log(val);
-    //val = await flightService.getLanguages();
-    //console.log(val);
-    //val = await flightService.getFlightsInfo();
-    //console.log(val);
+    val = await flightService.getCurrencies();
+    await dbHelper.delete('currency', {});
+    await dbHelper.insert('currency', JSON.parse(val).Currencies);
     res.send("hello world");
 });
 
