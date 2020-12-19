@@ -23,7 +23,7 @@ module.exports = {
             await client.close();
         }
     },
-    delete: async (collectionName, query) => {
+    delete: async (collectionName, query = {}) => {
         let client = new MongoClient(url, { 
             useNewUrlParser: true,
             useUnifiedTopology: true
@@ -42,7 +42,7 @@ module.exports = {
             await client.close();
         }
     },
-    update: async (collectionName, document, query) => {
+    update: async (collectionName, document, query = {}) => {
         let client = new MongoClient(url, { 
             useNewUrlParser: true,
             useUnifiedTopology: true

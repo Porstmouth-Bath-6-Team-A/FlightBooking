@@ -2,6 +2,9 @@ const express = require("express");
 const app = express();
 const flightService = require("../FlightBooking/services/flightService");
 const dbHelper = require('../FlightBooking/helper/dbHelper');
+const placesScheduler = require('../FlightBooking/scheduler/placesScheduler');
+
+placesScheduler.start();
 
 app.get('/test', async (req, res) => {
     await dbHelper.insert('country', [{Code: "SG", Name: "SINGAPORE"}, {Code: "JP", Name: "JAPAN"}]);
