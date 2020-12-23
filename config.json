@@ -3,5 +3,5 @@
     "ApiUrl": "http://partners.api.skyscanner.net/apiservices",
     "Country": "SG",
     "Currency": "SGD",
-    "local": ["en-US"]
+    "Locales": ["en-US"]
 }
