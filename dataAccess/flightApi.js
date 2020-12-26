@@ -1,5 +1,6 @@
 const got = require('got');
 const config = require('../config.json');
+const qs = require('qs');
 
 module.exports = {
     getPlaces: async () => {
@@ -7,30 +8,41 @@ module.exports = {
 
         return response.body;
     },
-    getFlights: async (country, currency, language, fromDist, toDist, fromDate, toDate) => {
-        let response = await got(config.ApiUrl + '/browseroutes/v1.0/' + country + '/' 
-                                                                       + currency + '/' 
-                                                                       + language + '/'  
-                                                                       + fromDist + '/' 
-                                                                       + toDist + '/'
-                                                                       + fromDate + '/'
-                                                                       + toDate + '/'
-                                                                       + '?apikey=' + config.ApiKey);
-        return response.body;
-    },
-    getCountries: async (language) => {
-        let response = await got(config.ApiUrl + '/reference/v1.0/countries/' + language + '?apikey=' + config.ApiKey);
+    getFlights: async (cabinclass, country, currency, language, fromDist, toDist, fromDate, toDate, adults, children, infants) => {
+        try {
+            let postData = {
+                cabinclass: cabinclass,
+                country: country,
+                currency: currency,
+                locale: language,
+                locationSchema: 'iata',
+                originplace: fromDist,
+                destinationplace: toDist,
+                outbounddate: fromDate,
+                inbounddate: toDate,
+                adults: adults,
+                children: children,
+                infants: infants,
+                apikey: config.ApiKey
+            }
 
-        return response.body;
-    },
-    getLanguages: async () => {
-        let response = await got(config.ApiUrl + '/reference/v1.0/locales?apikey='+ config.ApiKey);
+            let response = await got.default.post(config.ApiUrl + '/pricing/v1.0', 
+                { 
+                    headers:{ 
+                        'Content-Type' : 'application/x-www-form-urlencoded' 
+                    }, 
+                    body: qs.stringify(postData),
+		            responseType: 'json'
+                }
+            );
 
-        return response.body;
-    },
-    getCurrencies: async () =>{
-        let response = await got(config.ApiUrl + '/reference/v1.0/currencies?apikey='+config.ApiKey);
-        
-        return response.body;
+            let location = response.headers.location;
+
+            response = await got(location + '?apikey=' + config.ApiKey);
+
+            return response.body;
+        } catch (e) {
+            console.log(e);
+        }
     }
 }

@@ -1,10 +1,15 @@
 module.exports = {
     dbCollections: {
         place: 'place',
-        currency: 'currency',
-        country: 'country',
-        language: 'language',
-        user: 'user',
-        billing: 'billing'
-    }
+        user: 'user'
+    },
+    country: 'SG',
+    currency: 'SGD',
+    cabinClass: {
+        economy: 'Economy',
+        premiumEconomy: 'PremiumEconomy',
+        business: 'Business',
+        first: 'FIRST'
+    },
+    locale: 'en-US'
 };

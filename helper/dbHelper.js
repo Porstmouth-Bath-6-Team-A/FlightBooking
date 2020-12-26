@@ -1,6 +1,6 @@
 const MongoClient = require('mongodb').MongoClient;
 
-const url = "mongodb+srv://admin:admin@cluster0.srmns.mongodb.net/flightBooking?retryWrites=true&w=majority";
+const url = "mongodb+srv://admin:admin@cluster0.srmns.mongodb.net/flightBooking?retryWrites=true&w=majority"
 
 module.exports = {
     insert: async (collectionName, documents) => {
@@ -61,7 +61,7 @@ module.exports = {
             await client.close();
         }
     },
-    find: async (collectionName, query) => {
+    find: async (collectionName, query = {}) => {
         let client = new MongoClient(url, { 
             useNewUrlParser: true,
             useUnifiedTopology: true

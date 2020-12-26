@@ -1,6 +1,6 @@
 const flightService = require("../services/flightService");
-const dbHelper = require('../helper/dbHelper');
-const common = require('../enums/common');
+const flightData = require("../dataAccess/flightData");
+const { country } = require("../enums/common");
 
 class placeScheduler {
 
@@ -10,12 +10,31 @@ class placeScheduler {
 
     async _service () {
         try {
-            await dbHelper.delete(common.dbCollections.place, {});
+            let rawPlaces = await flightService.getPlaces();
+            rawPlaces = JSON.parse(rawPlaces).Continents;
 
-            let places = await flightService.getPlaces();
-            places = JSON.parse(places).Continents;
+            let places = rawPlaces.map(continent => {
+                let place = {};
+                continent.Countries.map(country => {
+                    country.Cities.map(city => {
+                        city.Airports.map(airport => {
+                            place = {
+                                countryName: country.Name,
+                                cityName: city.Name,
+                                airportName: airport.Name,
+                                airportCode: airport.Id 
+                            }
+                        });
+                    });
+                });
 
-            await dbHelper.insert(common.dbCollections.place, places);
+                return place;
+            });
+
+            console.log(places);
+
+            await flightData.deletePlaces();
+            await flightData.setPlaces(places);
         } catch(error) {
             console.log(error);
         }

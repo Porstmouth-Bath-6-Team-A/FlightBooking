@@ -1,45 +1,32 @@
 const express = require("express");
 const app = express();
 const flightService = require("../FlightBooking/services/flightService");
-const dbHelper = require('../FlightBooking/helper/dbHelper');
 const placesScheduler = require('../FlightBooking/scheduler/placesScheduler');
-const currencySchedueler = require("./scheduler/currencyScheduler");
-const languageScheduler = require("./scheduler/languageScheduler");
 
 placesScheduler.start();
-currencySchedueler.start();
-languageScheduler.start();
 
-app.get('/test', async (req, res) => {
-    await dbHelper.insert('country', [{Code: "SG", Name: "SINGAPORE"}, {Code: "JP", Name: "JAPAN"}]);
+app.use(express.static(__dirname + '/clientApp/public'));
 
-    let country = await dbHelper.find('country', {}); 
-    console.log(country);
-    console.log('------------');
-
-    await dbHelper.update('country', {Code: "SG"}, {Code: "MY", Name: "MYANMMAR"});
-
-    country = await dbHelper.find('country', {}); 
-    console.log(country);
-    console.log('------------');
-
-    await dbHelper.delete('country', {Code: "SG"});
-    await dbHelper.delete('country', {Code: "JP"});
-
-    country = await dbHelper.find('country', {}); 
-    console.log(country);
-    console.log('------------');
-
-    res.send('test');
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/clientApp/public/index.html');
 });
 
-app.get('/home', async (req, res) => {
-    let val;
-    val = await flightService.getCurrencies();
-    await dbHelper.delete('currency', {});
-    await dbHelper.insert('currency', JSON.parse(val).Currencies);
-    res.send("hello world");
-});
+(async () => {
+let flight = await flightService.getFlights(
+    'Economy',
+    'SG',
+    'SGD',
+    'en-US',
+    'RGN',
+    'LHR',
+    '2021-01-25',
+    '2021-02-06',
+    1,
+    0,
+    0
+);
+
+})();
 
 app.listen(8080);
 console.log("Application is running on Port 8080");

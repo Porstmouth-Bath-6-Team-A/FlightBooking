@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class home extends React.Component {
+export default class user extends React.Component {
 
     constructor(){
         super();
@@ -8,7 +8,7 @@ export default class home extends React.Component {
 
     render(){
         return(
-            <div>I am home</div>
+            <div>I am user</div>
         );
     }
 

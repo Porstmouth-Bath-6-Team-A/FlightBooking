@@ -1,7 +1,4 @@
 {
     "ApiKey": "prtl6749387986743898559646983194",
-    "ApiUrl": "http://partners.api.skyscanner.net/apiservices",
-    "Country": "SG",
-    "Currency": "SGD",
-    "Locales": ["en-US"]
+    "ApiUrl": "http://partners.api.skyscanner.net/apiservices"
 }
