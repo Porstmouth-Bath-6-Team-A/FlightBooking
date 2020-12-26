@@ -3,6 +3,8 @@ module.exports = {
         place: 'place',
         currency: 'currency',
         country: 'country',
-        language: 'language'
+        language: 'language',
+        user: 'user',
+        billing: 'billing'
     }
 };
