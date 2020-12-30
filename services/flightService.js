@@ -9,6 +9,12 @@ module.exports = {
     getPlaces: async () => {
         return await flightData.getPlaces();  
     },
+    deletePlaces: async () => {
+        return await flightData.deletePlaces();  
+    },
+    setPlaces: async (places) => {
+        return await flightData.setPlaces(places);  
+    },
     getFlights: async(cabinclass, country, currency, language, fromDist, toDist, fromDate, toDate, adults, children, infants) => {
         let flights = await flightApi.getFlights(cabinclass, country, currency, language, fromDist, toDist, fromDate, toDate, adults, children, infants);
         let returnVal = [];

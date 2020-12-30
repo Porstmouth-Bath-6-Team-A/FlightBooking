@@ -1,5 +1,4 @@
 const flightService = require("../services/flightService");
-const flightData = require("../dataAccess/flightData");
 
 class placeScheduler {
 
@@ -30,8 +29,8 @@ class placeScheduler {
                 return place;
             });
 
-            await flightData.deletePlaces();
-            await flightData.setPlaces(places);
+            await flightService.deletePlaces();
+            await flightService.setPlaces(places);
         } catch(error) {
             console.log(error);
         }
