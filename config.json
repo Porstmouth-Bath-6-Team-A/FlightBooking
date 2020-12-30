@@ -3,5 +3,6 @@
     "ApiUrl": "http://partners.api.skyscanner.net/apiservices",
     "SchedulerIntervals": {
         "Place": 1000000
-    }
+    },
+    "AgentId": 2370215
 }

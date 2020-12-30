@@ -6,7 +6,7 @@ module.exports = {
     getPlaces: async () => {
         let response = await got(config.ApiUrl + '/geo/v1.0?apikey=' + config.ApiKey);
 
-        return response.body;
+        return JSON.parse(response.body);
     },
     getFlights: async (cabinclass, country, currency, language, fromDist, toDist, fromDate, toDate, adults, children, infants) => {
         try {
@@ -40,7 +40,7 @@ module.exports = {
 
             response = await got(location + '?apikey=' + config.ApiKey);
 
-            return response.body;
+            return JSON.parse(response.body);
         } catch (e) {
             console.log(e);
         }

@@ -9,8 +9,8 @@ class placeScheduler {
 
     async _service () {
         try {
-            let rawPlaces = await flightService.getPlaces();
-            rawPlaces = JSON.parse(rawPlaces).Continents;
+            let rawPlaces = await flightService.getRawPlaces();
+            rawPlaces = rawPlaces.Continents;
 
             let places = rawPlaces.map(continent => {
                 let place = {};
