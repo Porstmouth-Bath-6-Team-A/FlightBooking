@@ -1,6 +1,5 @@
 const flightService = require("../services/flightService");
 const flightData = require("../dataAccess/flightData");
-const { country } = require("../enums/common");
 
 class placeScheduler {
 
@@ -30,8 +29,6 @@ class placeScheduler {
 
                 return place;
             });
-
-            console.log(places);
 
             await flightData.deletePlaces();
             await flightData.setPlaces(places);
@@ -63,7 +60,7 @@ const pl = new placeScheduler();
 
 module.exports = {
     start: async (interval)  => {
-        pl.start();
+        pl.start(interval);
     },
     stop: () => {
         pl.stop;
