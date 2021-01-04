@@ -1,7 +1,9 @@
 module.exports = {
     dbCollections: {
         place: 'place',
-        user: 'user'
+        user: 'user',
+        booking: 'booking',
+        login: 'login'
     },
     country: 'SG',
     currency: 'SGD',
