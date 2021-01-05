@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-const bodyParser = require('body-parser');
 
 const placesScheduler = require('../FlightBooking/scheduler/placesScheduler');
 const userController = require('../FlightBooking/controller/userController');
@@ -17,9 +16,7 @@ const { getUser } = require("./dataAccess/userData");
 placesScheduler.start(config.SchedulerIntervals.Place);
 
 app.use(express.static(__dirname + '/clientApp/public'));
-app.use(bodyParser.json()); 
-app.use(bodyParser.urlencoded({ extended: true })); 
-
+app.use(express.json()); 
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/clientApp/public/index.html');
