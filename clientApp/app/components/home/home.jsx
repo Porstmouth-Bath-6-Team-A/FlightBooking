@@ -1,7 +1,7 @@
 import React from 'react';
 import flightServices from '../../services/flightServices';
 import flightStore from '../../stores/flightStore';
-import flightFilter from '../home/flightFilter';
+import FlightFilter from '../home/flightFilter';
 
 export default class home extends React.Component {
 
@@ -22,7 +22,7 @@ export default class home extends React.Component {
         let places = this.getPlaces();
 
         return(
-            <flightFilter cabinClasses={cabinClasses}
+            <FlightFilter cabinClasses={cabinClasses}
                           places={places} />
         );
     }

@@ -12,10 +12,10 @@ export default class flightFilter extends React.Component {
 
         return(
             <div>
-                <select onSelect={}>
-                    {cabinClasses.map(cabin => {
+                <select>
+                    {Object.keys(cabinClasses).map(key => {
                         return (
-                            <option>{cabin}</option>
+                            <option value={key}>{cabinClasses[key]}</option>
                         )
                     })}
                 </select>
