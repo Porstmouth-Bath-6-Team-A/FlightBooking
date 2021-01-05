@@ -23,14 +23,14 @@ module.exports ={
         return user;
     },
 
-    insertlogin:async (emailAddress,token,updatedTokenTime)=>{
-        let user = await dbHelper.insert(common.dbCollections.login,[{emailAddress: emailAddress,token:token, updatedTokenTime: updatedTokenTime}]);
+    insertLogin:async (emailAddress, token, updatedTokenTime)=>{
+        let user = await dbHelper.insert(common.dbCollections.login,[{emailAddress: emailAddress, token, updatedTokenTime: updatedTokenTime}]);
         return user;
     },
     getLogin: async (token)=>{
         let user = await dbHelper.find(common.dbCollections.login,{token: token});
 
-        return user;
+        return user.length == 0 ? null : user[0];
     },
     insertLogout: async (emailAddress)=>{
         let user = await dbHelper.delete(common.dbCollections.login,{emailAddress: emailAddress});

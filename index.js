@@ -21,66 +21,56 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); 
 
 
-app.get('/test', async (req, res) =>{
- let user = await userService.insertlogin('hhh@gmail.com','323232323',new Date());
- console.log(user);
- return res.end('sucess')
-});
-
-/*app.get('/tests', async(req, res) =>{
-    let user = await userData.updateUser('KaungHtetOo','steve','2121212','Boonlay','kaunghtet@gmail.com','kaunghtetoo07@gmail.com');
-    console.log(user);
-    return res.end('success')    
-
-});*/
-
-
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/clientApp/public/index.html');
 });
 
 app.get('/places', async (req, res) => {
-    return await flightController.getPlaces(req, res);
+    await flightController.getPlaces(req, res);
 });
 
 app.post('/flights', async (req, res) => {
-    return await flightController.getFlights(req, res);
+    await flightController.getFlights(req, res);
 });
 
 app.get('/booking', async (req, res) => {
-    return await bookingController.getBookingFlights(req, res);
+    await bookingController.getBookingFlights(req, res);
+});
+
+app.post('/payment/create', async (req, res) => {
+    await bookingController.postCreatePayment(req, res);
 });
 
 app.post('/payment/success', async (req, res) => {
-    return await bookingController.postPaymentSuccess(req, res);
+    await bookingController.postPaymentSuccess(req, res);
 });
 
 app.get('/user', async (req, res) => {
-    return await userController.getUser(req, res);
+    await userController.getUser(req, res);
 });
 
 app.post('/user', async (req, res) => {
-    return await userController.postUser(req, res);
+    await userController.insertUser(req, res);
 });
 
 app.patch('/user', async (req, res) => {
-    return await userController.updateUser(req, res);
+    await userController.updateUser(req, res);
 });
 
 app.delete('/user', async (req, res) => {
-    return await userController.deleteUser(req, res);
+    await userController.deleteUser(req, res);
 });
 
 app.post('/user/login', async (req, res) => {
-    return await userController.postLogIn(req, res);
+    await userController.insertLogIn(req, res);
 });
 
 app.post('/user/logout', async (req, res) => {
-    return await userController.postLogOut(req, res);
+    await userController.insertLogOut(req, res);
 });
 
 app.post('/user/loginStatus', async (req, res) => {
-    return await userController.getLogInStatus(req, res);
+    await userController.isLogIn(req, res);
 });
 
 app.listen(8080);
