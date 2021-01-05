@@ -1,5 +1,5 @@
 const userData = require("../dataAccess/userData");
-const dbHelper = require("./helper/dbHelper");
+const dbHelper = require("../helper/dbHelper");
 
 
 module.exports ={

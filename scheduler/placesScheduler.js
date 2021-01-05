@@ -9,24 +9,23 @@ class placeScheduler {
     async _service () {
         try {
             let rawPlaces = await flightService.getRawPlaces();
-            rawPlaces = rawPlaces.Continents;
+            let continents = rawPlaces.Continents;
 
-            let places = rawPlaces.map(continent => {
-                let place = {};
+            let places = [];
+
+            continents.map(continent => {
                 continent.Countries.map(country => {
                     country.Cities.map(city => {
                         city.Airports.map(airport => {
-                            place = {
+                            places.push({
                                 countryName: country.Name,
                                 cityName: city.Name,
                                 airportName: airport.Name,
                                 airportCode: airport.Id 
-                            }
+                            });
                         });
                     });
                 });
-
-                return place;
             });
 
             await flightService.deletePlaces();
