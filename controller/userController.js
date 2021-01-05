@@ -2,7 +2,8 @@ const userService = require("../services/userService")
 
 module.exports = {
     getUser: async (req, res) => {
-    
+        let user = await userService.getUser(req.body.emailAddress,req.body.password);
+        
     },
     postUser: async (req, res) => {
     

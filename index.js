@@ -7,12 +7,33 @@ const userController = require('../FlightBooking/controller/userController');
 const bookingController = require('../FlightBooking/controller/bookingController');
 const flightController = require('../FlightBooking/controller/flightController');
 const config = require('../FlightBooking/config.json');
+const { dbCollections } = require("./enums/common");
+const dbHelper = require("./helper/dbHelper");
+const common = require("./enums/common");
+const userService = require("./services/userService");
+const userData = require("./dataAccess/userData");
+const { getUser } = require("./dataAccess/userData");
 
 placesScheduler.start(config.SchedulerIntervals.Place);
 
 app.use(express.static(__dirname + '/clientApp/public'));
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true })); 
+
+
+app.get('/test', async (req, res) =>{
+ let user = await userService.insertlogin('hhh@gmail.com','323232323',new Date());
+ console.log(user);
+ return res.end('sucess')
+});
+
+/*app.get('/tests', async(req, res) =>{
+    let user = await userData.updateUser('KaungHtetOo','steve','2121212','Boonlay','kaunghtet@gmail.com','kaunghtetoo07@gmail.com');
+    console.log(user);
+    return res.end('success')    
+
+});*/
+
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/clientApp/public/index.html');
