@@ -7,8 +7,8 @@ class flightStore extends EventEmitter {
     constructor(){
         super();
         
-        this._getFlightsURL = '/places';
-        this._getPlacesURL = '/flights';
+        this._getFlightsURL = '/flights';
+        this._getPlacesURL = '/places';
 
         this._flights = [];
         this._places = [];
@@ -16,26 +16,27 @@ class flightStore extends EventEmitter {
         dispatcher.register(this._handleActions);
     }
 
-    getFlights = () => {
+    getFlightsData = () => {
         fetch(this._getFlightsURL, {
             method: 'POST',
             headers: {
+                'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: {}
+            body: JSON.stringify({test: 33445})
         }).then(response => {
             this._flights = response.json();
             this.emit(flightEvents.GET_FLIGHTS_DONE);
         });
     }
 
-    getPlaces = () => {
+    getPlacesData = () => {
         fetch(this._getPlacesURL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: {}
+            body: JSON.stringify({test: 33445})
         }).then(response => {
             this._places = response.json();
             this.emit(flightEvents.GET_PLACES_DONE);
@@ -45,10 +46,10 @@ class flightStore extends EventEmitter {
     _handleActions = (action) => {
         switch (action.type) {
             case flightActions.GET_FLIGHTS:
-                this.getFlights();
+                this.getFlightsData();
                 break;
             case flightActions.GET_PLACES:
-                this.getPlaces();
+                this.getPlacesData();
                 break;
         }
     }
