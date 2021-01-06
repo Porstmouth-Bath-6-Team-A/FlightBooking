@@ -15,7 +15,6 @@ module.exports ={
     updateUser: async(firstName,lastName,phoneNumber,address,emailAddress,oldEmailAddress) => {
         let user = await dbHelper.update(common.dbCollections.user, {firstName: firstName,lastName: lastName , phoneNumber: phoneNumber, address: address, 
                                                                       emailAddress: emailAddress}, {emailAddress: oldEmailAddress});
-        console.log(user);
         return user;
     },
     insertUser: async (firstName,lastName,phoneNumber,address,emailAddress) => {
@@ -23,16 +22,16 @@ module.exports ={
         return user;
     },
 
-    insertLogin:async (emailAddress, token, updatedTokenTime)=>{
+    insertLogIn:async (emailAddress, token, updatedTokenTime)=>{
         let user = await dbHelper.insert(common.dbCollections.login,[{emailAddress: emailAddress, token, updatedTokenTime: updatedTokenTime}]);
         return user;
     },
-    getLogin: async (token)=>{
+    getLogIn: async (token)=>{
         let user = await dbHelper.find(common.dbCollections.login,{token: token});
 
         return user.length == 0 ? null : user[0];
     },
-    insertLogout: async (emailAddress)=>{
+    insertLogOut: async (emailAddress)=>{
         let user = await dbHelper.delete(common.dbCollections.login,{emailAddress: emailAddress});
         return user;
     }
