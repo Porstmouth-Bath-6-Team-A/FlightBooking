@@ -2,6 +2,7 @@ import {EventEmitter} from 'events';
 import dispatcher from '../dispatchers/dispatcher';
 import {flightEvents} from '../enums/events';
 import {flightActions} from '../enums/actions';
+import $ from 'jquery';
 
 class flightStore extends EventEmitter {
     constructor(){
@@ -17,28 +18,17 @@ class flightStore extends EventEmitter {
     }
 
     getFlightsData = () => {
-        fetch(this._getFlightsURL, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({test: 33445})
-        }).then(response => {
-            this._flights = response.json();
+        $.post(this._getFlightsURL, {
+
+        }, (data) => {
+            this._flights = data;
             this.emit(flightEvents.GET_FLIGHTS_DONE);
         });
     }
 
     getPlacesData = () => {
-        fetch(this._getPlacesURL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({test: 33445})
-        }).then(response => {
-            this._places = response.json();
+        $.get(this._getPlacesURL, (data) => {
+            this._places = data;
             this.emit(flightEvents.GET_PLACES_DONE);
         });
     }

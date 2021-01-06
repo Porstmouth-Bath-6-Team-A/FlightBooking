@@ -1,4 +1,5 @@
 import React from 'react';
+import Autocomplete from 'react-autocomplete';
 
 export default class flightFilter extends React.Component {
 
@@ -15,7 +16,7 @@ export default class flightFilter extends React.Component {
                 <select>
                     {Object.keys(cabinClasses).map(key => {
                         return (
-                            <option value={key}>{cabinClasses[key]}</option>
+                            <option key={key} value={key}>{cabinClasses[key]}</option>
                         )
                     })}
                 </select>
