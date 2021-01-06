@@ -15,22 +15,22 @@ module.exports ={
     insertUser: async (firstName,lastName,phoneNumber,address,emailAddress) => {
         return await userData.insertUser(firstName,lastName,phoneNumber,address,emailAddress);
     },
-    insertLogin: async (emailAddress) => {
+    insertLogIn: async (emailAddress) => {
         let token = Math.floor(new Date().getTime() / 1000).toString();
         
-        await userData.insertLogin(emailAddress,token,new Date());
+        await userData.insertLogIn(emailAddress,token,new Date());
 
         return token;
     },
-    isLogin: async (emailAddress,token) => {
-        let login = await userData.getLogin(token);
+    isLogIn: async (emailAddress,token) => {
+        let login = await userData.getLogIn(token);
         
         if (login) {
             let diffMs = new Date () - login.updatedTokenTime ;
             let diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); 
         
             if (diffMins > 5) {
-                await userData.insertLogout(emailAddress);
+                await userData.insertLogOut(emailAddress);
                 return false;
             } 
             else {
@@ -41,8 +41,8 @@ module.exports ={
         }
 
     },
-    insertLogout: async (emailAddress) => {
-        return await userData.insertLogout(emailAddress);
+    insertLogOut: async (emailAddress) => {
+        return await userData.insertLogOut(emailAddress);
     }
 }
 
