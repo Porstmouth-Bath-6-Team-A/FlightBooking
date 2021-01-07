@@ -1,5 +1,4 @@
 import React from 'react';
-import Autocomplete from 'react-autocomplete';
 
 export default class flightFilter extends React.Component {
 
