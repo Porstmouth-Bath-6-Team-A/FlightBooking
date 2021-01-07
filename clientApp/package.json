@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.jsx",
   "scripts": {
-    "web.dev": "SET NODE_ENV=development&& webpack --config webpack.config.js --watch  --color",
+    "web.dev": "webpack --config webpack.config.js --watch  --color",
     "web.build": "SET NODE_ENV=production&& webpack --config webpack.config.js --color"
   },
   "author": "",
@@ -33,7 +33,7 @@
     "copy-webpack-plugin": "^6.2.1",
     "html-webpack-plugin": "^4.5.0",
     "terser-webpack-plugin": "^5.0.3",
-    "webpack": "^5.4.0",
+    "webpack": "^5.11.1",
     "webpack-cleanup-plugin": "^0.5.1",
     "webpack-cli": "^4.1.0"
   }
