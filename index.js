@@ -18,6 +18,8 @@ placesScheduler.start(config.SchedulerIntervals.Place);
 app.use(express.static(__dirname + '/clientApp/public'));
 app.use(express.json()); 
 
+
+
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/clientApp/public/index.html');
 });

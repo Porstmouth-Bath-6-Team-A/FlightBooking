@@ -6,14 +6,15 @@ module.exports ={
     getUser: async (emailAddress,password) => {
         return await userData.getUser(emailAddress,password); 
     },
-    updateUser: async (firstName,lastName,phoneNumber,address,emailAddress,oldEmailAddress) => {
-		return await userData.updateUser(firstName,lastName,phoneNumber,address,emailAddress,oldEmailAddress);
+    updateUser: async (firstName,lastName,phoneNumber,address,emailAddress,password,oldEmailAddress) => {
+		return await userData.updateUser(firstName,lastName,phoneNumber,address,emailAddress,password,oldEmailAddress);
     },
     deleteUser: async (emailAddress) => {
         return await userData.deleteUser(emailAddress);  
     },
-    insertUser: async (firstName,lastName,phoneNumber,address,emailAddress) => {
-        return await userData.insertUser(firstName,lastName,phoneNumber,address,emailAddress);
+    insertUser: async (firstName, lastName, phoneNumber, address, emailAddress, password) => {
+        let user = await userData.getUser(emailAddress);
+        return user;
     },
     insertLogIn: async (emailAddress) => {
         let token = Math.floor(new Date().getTime() / 1000).toString();

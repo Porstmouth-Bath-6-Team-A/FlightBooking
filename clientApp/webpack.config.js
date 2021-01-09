@@ -19,8 +19,8 @@ module.exports = {
        ],
        'main': './app/index.jsx'
     },
-    mode: process.env.NODE_ENV,
-    devtool: process.env.NODE_ENV == 'development' ? 'source-map' : false,
+    mode: 'development',
+    devtool: 'source-map',
     output: {
         path: path.join(__dirname, 'public'),
         publicPath: configuration.StaticFilesBaseUrl.replace(/\/$/, ""),
