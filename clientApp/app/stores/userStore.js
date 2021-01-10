@@ -59,7 +59,7 @@ class userStore extends EventEmitter {
 			}),
 			datatype:'Json',
 			contentType: 'application/json; charset=UTF-8',
-			success: (data) =>{
+			success: (data) => {
 				this.emit(userEvents.UPDATE_USER_DONE);
 			},
 			error:(err) => {
