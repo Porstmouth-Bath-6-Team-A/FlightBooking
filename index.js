@@ -36,40 +36,28 @@ app.get('/booking', async (req, res) => {
     await bookingController.getBookingFlights(req, res);
 });
 
-app.post('/payment/create', async (req, res) => {
-    await bookingController.postCreatePayment(req, res);
-});
-
-app.post('/payment/success', async (req, res) => {
-    await bookingController.postPaymentSuccess(req, res);
-});
-
-app.post('/user/get', async (req, res) => {
-    await userController.getUser(req, res);
+app.post('/booking', async (req, res) => {
+    await bookingController.setBookingFlights(req, res);
 });
 
 app.post('/user/insert', async (req, res) => {
-    await userController.insertUser(req, res);
+    await userController.setUser(req, res);
 });
 
 app.post('/user/update', async (req, res) => {
     await userController.updateUser(req, res);
 });
 
-app.delete('/user', async (req, res) => {
-    await userController.deleteUser(req, res);
-});
-
 app.post('/user/login', async (req, res) => {
-    await userController.insertLogIn(req, res);
+    await userController.setLogIn(req, res);
 });
 
 app.post('/user/logout', async (req, res) => {
-    await userController.insertLogOut(req, res);
+    await userController.setLogOut(req, res);
 });
 
 app.post('/user/loginStatus', async (req, res) => {
-    await userController.isLogIn(req, res);
+    await userController.getLogInToken(req, res);
 });
 
 app.listen(8080);

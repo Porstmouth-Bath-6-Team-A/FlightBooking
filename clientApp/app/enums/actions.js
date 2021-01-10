@@ -8,6 +8,7 @@ export const flightActions = {
 export const userActions = {
     'SET_USER': 'SET_USER',
     'UPDATE_USER': 'UPDATE_USER',
-    'GET_LOGIN': 'GET_LOGIN'
-    
+    'SET_LOGIN': 'SET_LOGIN',
+    'SET_LOGOUT': 'SET_LOGOUT',
+    'GET_LOGIN_TOKEN': 'GET_LOGIN_TOKEN'
 }

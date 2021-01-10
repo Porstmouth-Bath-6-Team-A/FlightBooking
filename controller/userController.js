@@ -2,39 +2,50 @@ const { response } = require("express");
 const userService = require("../services/userService")
 
 module.exports = {
-    getUser: async (req, res) => {
-        let user = await userService.getUser(req.query.emailAddress, req.query.password);
+    setUser: async (req, res) => {
+        await userService.insertUser(req.body.firstName, req.body.lastName, req.body.phoneNumber, req.body.address, req.body.emailAddress, req.body.password);
+
+        let userLogin = await userService.setLogIn(req.body.emailAddress);
+
         res.send({
-            statusCode: 'ok',
-            statusData: {user}
-        });   
-    },
-    insertUser: async (req, res) => {
-        let user = await userService.insertUser(req.body.firstName, req.body.lastName, req.body.phoneNumber, req.body.address, req.body.emailAddress, req.body.password);
-        res.send({
-            statusCode: 'ok',
-            statusData: {user}
+            statusCode: userLogin == null ? 'FAIL' : 'OK',
+            statusDesc: {
+                user: userLogin.user,
+                token: userLogin.token
+            }
         });
     },
     updateUser: async (req, res) => {
-        let user = await userService.updateUser(req.body.firstName, req.body.lastName, req.body.phoneNumber, req.body.address, req.body.emailAddress, req.body.password, req.body.oldEmailAddress);
-        res.send (user);
+        await userService.updateUser(req.body.firstName, req.body.lastName, req.body.phoneNumber, req.body.address, req.body.emailAddress, req.body.password, req.body.oldEmailAddress);
+        
+        res.send({
+            statusCode: 'OK'
+        });
+    },
+    getLogInToken: async (req, res) => {
+        let logInToken = await userService.getLogInToken(req.body.emailAddress, req.body.token);
 
+        res.send({
+            statusCode: logInToken != '' ? 'OK' : 'FAIL',
+            statusDesc: logInToken
+        });
     },
-    deleteUser: async (req, res) => {
-        let user = await userService.deleteUser(req.body.emailAddress);
-        res.send (user);
+    setLogOut: async (req, res) => {
+        await userService.setLogOut(req.body.token);
+
+        res.send({
+            statusCode: 'OK'
+        });
     },
-    isLogIn: async (req, res) => {
-        let user = await  userService.isLogIn(req.body.emailAddress, req.body.token);
-        res.send (user);
-    },
-    insertLogOut: async (req, res) => {
-        let user = await userService.insertLogOut(req.body.emailAddress);
-        res.send (user);
-    },
-    insertLogIn: async (req, res) => {
-        let user = await userService.insertLogIn(req.body.emailAddress);
-        res.send (user);
+    setLogIn: async (req, res) => {
+        let userLogin = await userService.setLogIn(req.body.emailAddress, req.body.password);
+
+        res.send({
+            statusCode: userLogin == null ? 'FAIL' : 'OK',
+            statusDesc: {
+                user: userLogin == null ? null : userLogin.user,
+                token: userLogin == null ? null : userLogin.token
+            }
+        });
     }
 }

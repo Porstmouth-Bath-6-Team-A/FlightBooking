@@ -4,48 +4,54 @@ const dbHelper = require("../helper/dbHelper");
 
 
 module.exports ={
-    getUser: async (emailAddress,password) => {
-        return await userData.getUser(emailAddress,password); 
+    updateUser: async (firstName, lastName, phoneNumber, address, emailAddress, password, oldEmailAddress) => {
+		await userData.updateUser(firstName, lastName, phoneNumber, address, emailAddress, password, oldEmailAddress);
     },
-    updateUser: async (firstName,lastName,phoneNumber,address,emailAddress,password,oldEmailAddress) => {
-		return await userData.updateUser(firstName,lastName,phoneNumber,address,emailAddress,password,oldEmailAddress);
+    setUser: async (firstName, lastName, phoneNumber, address, emailAddress, password) => {
+        await userData.setUser(firstName, lastName, phoneNumber, address, emailAddress, password);
     },
-    deleteUser: async (emailAddress) => {
-        return await userData.deleteUser(emailAddress);  
-    },
-    insertUser: async (firstName, lastName, phoneNumber, address, emailAddress, password) => {
-        await userData.insertUser(firstName, lastName, phoneNumber, address, emailAddress, password);
-        let user = await userData.getUser(emailAddress,password);
-        return user;
-    },
-    insertLogIn: async (emailAddress) => {
-        let token = Math.floor(new Date().getTime() / 1000).toString();
-        
-        await userData.insertLogIn(emailAddress,token,new Date());
+    setLogIn: async (emailAddress, password) => {
+        let user = await userData.getUser(emailAddress, password);
 
-        return token;
+        if (user) {
+            let token = Math.floor(new Date().getTime() / 1000).toString();
+            
+            await userData.setLogIn(emailAddress, token, new Date());
+
+            return {
+                user: user,
+                token: token
+            };
+        } else {
+            return null;
+        }
     },
-    isLogIn: async (emailAddress,token) => {
+    getLogInToken: async (emailAddress, token) => {
         let login = await userData.getLogIn(token);
         
         if (login) {
-            let diffMs = new Date () - login.updatedTokenTime ;
+            let diffMs = new Date () - login.updatedTokenTime;
             let diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); 
         
             if (diffMins > 5) {
-                await userData.insertLogOut(emailAddress);
-                return false;
+                await userData.setLogOut(token);
+
+                return '';
             } 
             else {
-                return true;
+                let token = Math.floor(new Date().getTime() / 1000).toString();
+            
+                await userData.setLogIn(emailAddress, token, new Date());
+
+                return token;
             }
         } else {
-            return false;
+            return '';
         }
 
     },
-    insertLogOut: async (emailAddress) => {
-        return await userData.insertLogOut(emailAddress);
+    setLogOut: async (token) => {
+        await userData.setLogOut(token);
     }
 }
 
