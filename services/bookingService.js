@@ -5,6 +5,6 @@ module.exports = {
         await bookingData.insertBooking(paymentRef, flight, emailAddress);
     },
     getBookingFlights: async (emailAddress) => {
-        return await insertBooking.getBookings(emailAddress);
+        return await bookingData.getBookings(emailAddress);
     }
 }

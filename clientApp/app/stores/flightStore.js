@@ -80,10 +80,7 @@ class flightStore extends EventEmitter {
     getBookingData = (emailAddress) => {
         $.ajax({
 			method: "GET",
-			url: this._getBookingURL,
-			data: JSON.stringify({
-				emailAddress: emailAddress
-			}),
+			url: this._getBookingURL + '?emailAddress=' + emailAddress,
 			dataType: 'json',
 			contentType: 'application/json; charset=UTF-8',
 			success: (data) => {

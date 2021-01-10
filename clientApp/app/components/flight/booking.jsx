@@ -24,9 +24,9 @@ export default class flights extends React.Component {
     }
 
     _getBookingDone = () => {
-        this.state = {
+        this.setState({
             isLoading: false
-        }
+        });
     }
 
     render(){

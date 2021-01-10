@@ -15,7 +15,8 @@ export default class flights extends React.Component {
 
         this.state = {
             currentPage: 1,
-            flightSorting: this.flightSorting[0]
+            flightSorting: this.flightSorting[0],
+            isLoading: true
         };
     }
 
@@ -29,7 +30,10 @@ export default class flights extends React.Component {
 
     updateComponent = () => {
         this.flightCount = flightServices.getFlightCount();
-        this.forceUpdate();
+        
+        this.setState({
+            isLoading: false
+        });
     }
 
     goFirst = () => {
