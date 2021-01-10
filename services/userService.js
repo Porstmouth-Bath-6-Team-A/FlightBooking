@@ -9,6 +9,21 @@ module.exports ={
     },
     setUser: async (firstName, lastName, phoneNumber, address, emailAddress, password) => {
         await userData.setUser(firstName, lastName, phoneNumber, address, emailAddress, password);
+
+        let user = await userData.getUser(emailAddress, password);
+
+        if (user) {
+            let token = Math.floor(new Date().getTime() / 1000).toString();
+            
+            await userData.setLogIn(emailAddress, token, new Date());
+
+            return {
+                user: user,
+                token: token
+            };
+        } else {
+            return null;
+        }
     },
     setLogIn: async (emailAddress, password) => {
         let user = await userData.getUser(emailAddress, password);

@@ -3,11 +3,9 @@ const userService = require("../services/userService")
 
 module.exports = {
     setUser: async (req, res) => {
-        await userService.insertUser(req.body.firstName, req.body.lastName, req.body.phoneNumber, req.body.address, req.body.emailAddress, req.body.password);
+        let userLogin = userService.setUser(req.body.firstName, req.body.lastName, req.body.phoneNumber, req.body.address, req.body.emailAddress, req.body.password);
 
-        let userLogin = await userService.setLogIn(req.body.emailAddress);
-
-        res.send({
+        res.json({
             statusCode: userLogin == null ? 'FAIL' : 'OK',
             statusDesc: {
                 user: userLogin.user,
@@ -18,14 +16,14 @@ module.exports = {
     updateUser: async (req, res) => {
         await userService.updateUser(req.body.firstName, req.body.lastName, req.body.phoneNumber, req.body.address, req.body.emailAddress, req.body.password, req.body.oldEmailAddress);
         
-        res.send({
+        res.json({
             statusCode: 'OK'
         });
     },
     getLogInToken: async (req, res) => {
         let logInToken = await userService.getLogInToken(req.body.emailAddress, req.body.token);
 
-        res.send({
+        res.json({
             statusCode: logInToken != '' ? 'OK' : 'FAIL',
             statusDesc: logInToken
         });
@@ -33,14 +31,14 @@ module.exports = {
     setLogOut: async (req, res) => {
         await userService.setLogOut(req.body.token);
 
-        res.send({
+        res.json({
             statusCode: 'OK'
         });
     },
     setLogIn: async (req, res) => {
         let userLogin = await userService.setLogIn(req.body.emailAddress, req.body.password);
 
-        res.send({
+        res.json({
             statusCode: userLogin == null ? 'FAIL' : 'OK',
             statusDesc: {
                 user: userLogin == null ? null : userLogin.user,
