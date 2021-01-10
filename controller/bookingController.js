@@ -1,10 +1,19 @@
 const bookingService = require('../services/bookingService');
 
 module.exports = {
-    postPaymentSuccess: async (req, res) => {
-        return await bookingService.postPaymentSuccess();
+    setBookingFlights: async (req, res) => {
+        await bookingService.setBookingFlights(req.body.paymentRef, req.body.flight, req.body.emailAddress);
+        res.json({
+            StatusCode: 'OK',
+            StatusDesc: ''
+        });
     },
     getBookingFlights: async (req, res) => {
-        return await bookingService.getBookingFlights();
+        let booking = await bookingService.getBookingFlights(req.query.emailAddress);
+
+        res.json({
+            StatusCode: 'OK',
+            StatusDesc: booking
+        });
     }
 }

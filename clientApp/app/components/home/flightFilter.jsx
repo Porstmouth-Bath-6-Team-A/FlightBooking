@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import FromDestination from '../../components/home/destination';
 import ToDestination from '../../components/home/destination';
 import DatePicker from 'react-datepicker';
@@ -80,7 +81,7 @@ export default class flightFilter extends React.Component {
                 <input type="text" onKeyUp={e => this.onSelectAdults(e)} />
                 <input type="text" onKeyUp={e => this.onSelectChildren(e)} />
                 <input type="text" onKeyUp={e => this.onSelectInfants(e)} />
-                <input type="button" value="Find flights" onClick={this.props.findFlights} />
+                <Link to={'/flights'} onClick={this.props.findFlights}>Find flights</Link>
             </div>
         );
     }

@@ -7,11 +7,19 @@ module.exports = {
                                                      req.body.fromDate, req.body.toDate, req.body.adults, 
                                                      req.body.children, req.body.infants);
 
-        res.json(flights);
+        res.json({
+            StatusCode: 'OK',
+            StatusDesc: flights
+        });
     },
     getPlaces: async (req, res) => {
         let places = await flightService.getPlaces();
 
-        res.json(places);
+        res.json(
+            {
+                StatusCode: 'OK',
+                StatusDesc: places
+            }
+        );
     }
 }

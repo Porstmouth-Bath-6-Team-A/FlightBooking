@@ -14,6 +14,7 @@ module.exports ={
     },
     insertUser: async (firstName, lastName, phoneNumber, address, emailAddress, password) => {
         let user = await userData.getUser(emailAddress);
+        
         return user;
     },
     insertLogIn: async (emailAddress) => {

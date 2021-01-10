@@ -36,12 +36,8 @@ app.get('/booking', async (req, res) => {
     await bookingController.getBookingFlights(req, res);
 });
 
-app.post('/payment/create', async (req, res) => {
-    await bookingController.postCreatePayment(req, res);
-});
-
-app.post('/payment/success', async (req, res) => {
-    await bookingController.postPaymentSuccess(req, res);
+app.post('/booking', async (req, res) => {
+    await bookingController.setBookingFlights(req, res);
 });
 
 app.get('/user', async (req, res) => {

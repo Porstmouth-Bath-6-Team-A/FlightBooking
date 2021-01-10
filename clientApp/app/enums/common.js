@@ -11,3 +11,15 @@ export const setUser ={
     phoneNumber: 'phoneNumber',
     emailAddress: 'emailAddress'
 }
+
+export const country = 'SG';
+
+export const currency = 'SGD';
+
+export const language = 'en-US';
+
+export const flightSorting = {
+    best: 'Best',
+    cheap: 'Cheap',
+    fast: 'Fast'
+}

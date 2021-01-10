@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.jsx",
   "scripts": {
-    "web.dev": "webpack --config webpack.config.js --watch  --color",
+    "web.dev": "SET NODE_ENV=development&& webpack --config webpack.config.js --watch  --color",
     "web.build": "SET NODE_ENV=production&& webpack --config webpack.config.js --color"
   },
   "author": "",

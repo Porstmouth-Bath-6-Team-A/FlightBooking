@@ -2,6 +2,7 @@ import React from 'react';
 import flightServices from '../../services/flightServices';
 import FlightFilter from '../home/flightFilter';
 import * as flightActions from '../../actions/flightActions';
+import moment from 'moment';
 
 export default class home extends React.Component {
 
@@ -101,7 +102,16 @@ export default class home extends React.Component {
     }
 
     findFlights = () => {
-        flightActions.findFlights()
+        flightActions.getFlights(
+            this.state.cabinclass,
+            this.state.fromDestinationCode,
+            this.state.toDestinationCode,
+            moment(this.state.fromDate).format('YYYY-MM-DD'),
+            moment(this.state.toDate).format('YYYY-MM-DD'),
+            this.state.adults,
+            this.state.children,
+            this.state.infants
+        );
     }
 
     render(){
