@@ -11,7 +11,6 @@ module.exports = {
     },
     insertUser: async (req, res) => {
         let user = await userService.insertUser(req.body.firstName, req.body.lastName, req.body.phoneNumber, req.body.address, req.body.emailAddress, req.body.password);
-        console.log(user);
         res.send({
             statusCode: 'ok',
             statusData: {user}

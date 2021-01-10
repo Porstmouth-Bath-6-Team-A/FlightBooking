@@ -4,33 +4,31 @@ import * as userActions from '../../actions/userActions';
 import {userEvents} from '../../enums/events';
 
 export default class user extends React.Component {
-
-    constructor(){
-        super();
-    }
-    
-    componentDidMount() {
-		userStore.on(userEvents.SET_USER_DONE, this._onRender);
+	
+	constructor(){
+		super();
 	}
 
+	componentDidMount() {
+			userStore.on(userEvents.UPDATE_USER_DONE, this._onRender);
+		}
+	
 	componentWillUnmount() {
-		userStore.off(userEvents.SET_USER_DONE, this._onRender);
-	}
-
+			userStore.off(userEvents.UPDATE_USER_DONE, this._onRender);
+		}
+	
 	_onRender = () => {
-	 
-	 
-	}
-
-	onRegister = () => {
-		console.log(this.refs.firstName.value, this.refs.lastName.value, this.refs.phoneNumber.value, this.refs.address.value, this.refs.emailAddress.value, this.refs.password.value);
-		
-		userActions.setUser(this.refs.firstName.value, this.refs.lastName.value, this.refs.phoneNumber.value, this.refs.address.value, this.refs.emailAddress.value, this.refs.password.value);
-
-	}
-
-    render() {
-        return(
+			window.location.href = '/user';
+		 
+		}
+	
+	onUpdate = () => {
+			userActions.updateUser(this.refs.firstName.value, this.refs.lastName.value, this.refs.phoneNumber.value, this.refs.address.value, this.refs.emailAddress.value, this.refs.password.value , this.refs.oldEmailAddress.value);
+	
+		}
+	
+	render() {
+		return(
 			<div>
                 <label>
                     FirstName:
@@ -63,10 +61,10 @@ export default class user extends React.Component {
 				</label>     
 				<br></br>
 				<label>
-					Confirm password:
-					<input ref="password" type="password" name="confirm_password" />
+					OldEmailAddress:
+					<input ref="oldEmailAddress" type="text" name="oldEmailAddress" />
 				</label>
-				<input type="button" value="Register" onClick={this.onRegister} />
+				<input type="button" value="Update" onClick={this.onUpdate} />
 								
 		</div>
 			
@@ -74,4 +72,4 @@ export default class user extends React.Component {
 		);
     }
 }
-
+	
