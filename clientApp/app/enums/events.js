@@ -6,6 +6,7 @@ export const flightEvents = {
 }
 export const userEvents = {
     'SET_USER_DONE': 'SET_USER_DONE',
-    'UPDATE_USER_DONE': 'UPDATE_USER_DONE'
+    'UPDATE_USER_DONE': 'UPDATE_USER_DONE',
+    'GET_LOGIN_DONE': 'GET_LOGIN_DONE'
 }
 

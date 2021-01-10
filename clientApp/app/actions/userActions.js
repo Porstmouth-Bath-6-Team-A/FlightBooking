@@ -31,3 +31,14 @@ export function updateUser(firstName, lastName, address, phoneNumber, emailAddre
 		}
 	});
 }
+
+export function getLogIn(emailAddress,password){
+        dispatcher.dispatch({
+            type: userActions.GET_LOGIN,
+            data: {
+				emailAddress,
+				password
+            }
+		});
+}
+

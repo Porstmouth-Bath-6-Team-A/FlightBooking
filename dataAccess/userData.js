@@ -13,7 +13,7 @@ module.exports ={
     },
     updateUser: async(firstName,lastName,phoneNumber,address,emailAddress,password,oldEmailAddress) => {
         let user = await dbHelper.update(common.dbCollections.user, {firstName: firstName,lastName: lastName , phoneNumber: phoneNumber, address: address, 
-                                                                      emailAddress: emailAddress}, {password: password},{emailAddress: oldEmailAddress});
+                                                                      emailAddress: emailAddress, password: password}, {emailAddress: oldEmailAddress});
         return user;
     },
     insertUser: async (firstName,lastName,phoneNumber,address,emailAddress,password) => {

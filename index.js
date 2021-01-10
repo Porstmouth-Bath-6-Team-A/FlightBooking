@@ -36,19 +36,23 @@ app.get('/booking', async (req, res) => {
     await bookingController.getBookingFlights(req, res);
 });
 
-app.post('/booking', async (req, res) => {
-    await bookingController.setBookingFlights(req, res);
+app.post('/payment/create', async (req, res) => {
+    await bookingController.postCreatePayment(req, res);
 });
 
-app.get('/user', async (req, res) => {
+app.post('/payment/success', async (req, res) => {
+    await bookingController.postPaymentSuccess(req, res);
+});
+
+app.post('/user/get', async (req, res) => {
     await userController.getUser(req, res);
 });
 
-app.post('/user', async (req, res) => {
+app.post('/user/insert', async (req, res) => {
     await userController.insertUser(req, res);
 });
 
-app.patch('/user', async (req, res) => {
+app.post('/user/update', async (req, res) => {
     await userController.updateUser(req, res);
 });
 
