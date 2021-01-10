@@ -10,9 +10,24 @@ export function setUser(firstName, lastName, address, phoneNumber, emailAddress,
 				address ,
 				phoneNumber ,
 				emailAddress ,
-				password ,
+				password 
 			
 			}
 		});
 }
 
+export function updateUser(firstName, lastName, address, phoneNumber, emailAddress, password, oldEmailAddress){
+		dispatcher.dispatch({
+			type: userActions.UPDATE_USER,
+			data: {
+				firstName ,
+				lastName ,
+				address ,
+				phoneNumber ,
+				emailAddress, 
+				password ,
+				oldEmailAddress , 
+			 
+		}
+	});
+}

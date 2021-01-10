@@ -6,5 +6,6 @@ export const flightActions = {
 }
 
 export const userActions = {
-    'SET_USER': 'SET_USER'
+    'SET_USER': 'SET_USER',
+    'UPDATE_USER': 'UPDATE_USER'
 }

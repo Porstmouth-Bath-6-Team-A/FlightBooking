@@ -1,3 +1,4 @@
+const { connect } = require("mongodb");
 const userData = require("../dataAccess/userData");
 const dbHelper = require("../helper/dbHelper");
 
@@ -13,8 +14,8 @@ module.exports ={
         return await userData.deleteUser(emailAddress);  
     },
     insertUser: async (firstName, lastName, phoneNumber, address, emailAddress, password) => {
-        let user = await userData.getUser(emailAddress);
-        
+        await userData.insertUser(firstName, lastName, phoneNumber, address, emailAddress, password);
+        let user = await userData.getUser(emailAddress,password);
         return user;
     },
     insertLogIn: async (emailAddress) => {
