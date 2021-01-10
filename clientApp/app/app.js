@@ -2,6 +2,7 @@ import React from 'react';
 import * as flightActions from './actions/flightActions';
 import flightStore from './stores/flightStore';
 import {flightEvents} from './enums/events';
+import $ from 'jquery';
 
 export default class app extends React.Component{
 
@@ -21,7 +22,7 @@ export default class app extends React.Component{
 
     setRender = () => {
         flightStore.off(flightEvents.GET_PLACES_DONE, this.setRender);
-
+        $('#loader').hide();
         this.setState({
             isReady: true
         });

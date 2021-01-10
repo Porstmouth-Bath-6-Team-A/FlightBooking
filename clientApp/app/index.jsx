@@ -24,5 +24,5 @@ ReactDOM.render(
                         </Switch>
                 </Router>
         </App>
-       ,document.querySelector("#app")
+       ,document.querySelector("#page")
 );

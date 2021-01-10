@@ -15,7 +15,10 @@ module.exports = {
            'react',
            'react-dom',
            'react-router-dom',
-           'flux'
+           'flux',
+           'react-paypal-button-v2',
+           'react-datepicker',
+           'jquery'
        ],
        'main': './app/index.jsx'
     },
@@ -76,6 +79,18 @@ module.exports = {
             version: version,
             APP_CONFIGURATION: JSON.stringify(configuration)
         }),
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
+        new CopyWebpackPlugin({
+          patterns: [
+            {
+                from: './app/assets/',
+                to: './assets/'
+            }
+          ]
+      }, {
+          ignore: [
+              '*.txt'
+          ]
+      }),
     ]
 };

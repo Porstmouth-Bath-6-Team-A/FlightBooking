@@ -25,7 +25,7 @@ export default class destination extends React.Component {
 
         return(
             <React.Fragment>
-                <input type="text" onChange={this.onChange} value={value ? value : keyword} />
+                <input type="text" className="form-control" onChange={this.onChange} value={value ? value : keyword} />
                 {places.length > 0 &&
                     <div style={{border: '1px solid red', width: 300}}>
                         {places.map(place => 
