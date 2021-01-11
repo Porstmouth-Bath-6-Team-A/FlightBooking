@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import userServices from '../../services/userServices';
 import userStore from '../../stores/userStore';
 import {userEvents} from '../../enums/events';
+import * as userActions from '../../actions/userActions';
 
 export default class flights extends React.Component {
 
@@ -10,8 +11,20 @@ export default class flights extends React.Component {
         super();
     }
 
-    logout = () => {
+    componentDidMount() {
+        userStore.on(userEvents.SET_LOGOUT_DONE, this.userLogoutRedirect);
+    }
 
+    componentWillUnmount() {
+        userStore.off(userEvents.SET_LOGOUT_DONE, this.userLogoutRedirect);
+    }
+
+    userLogoutRedirect = () => {
+        this.forceUpdate();
+    }
+
+    logout = () => {
+        userActions.setLogOut();
     }
 
     render(){
@@ -37,7 +50,7 @@ export default class flights extends React.Component {
                                     }
                                 </li>
                                 {emailAddress && 
-                                    <li onClick={this.logout}>
+                                    <li style={{cursor: 'pointer', color: 'white'}} onClick={this.logout}>
                                         Logout
                                     </li>
                                 }

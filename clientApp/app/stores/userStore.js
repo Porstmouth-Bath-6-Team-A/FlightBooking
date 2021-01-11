@@ -34,9 +34,13 @@ class userStore extends EventEmitter {
 			dataType: 'json',
 			contentType: 'application/json; charset=UTF-8',
 			success: (data) => {
-				this._user = data.statusDesc.user;
-				this._token = data.statusDesc.token;
-				this.emit(userEvents.SET_USER_DONE);
+				if (data.statusCode == 'OK') {
+					this._user = data.statusDesc.user;
+					this._token = data.statusDesc.token;
+					this.emit(userEvents.SET_USER_DONE);
+				} else {
+					this.emit(userEvents.SET_USER_FAILED);
+				}
 			},
 			error: (err) => {
 				console.log(err);
@@ -60,7 +64,12 @@ class userStore extends EventEmitter {
 			datatype:'Json',
 			contentType: 'application/json; charset=UTF-8',
 			success: (data) => {
-				this.emit(userEvents.UPDATE_USER_DONE);
+				if (data.statusCode == 'OK') {
+					this._user = data.statusDesc.user;
+					this.emit(userEvents.UPDATE_USER_DONE);
+				} else {
+					this.emit(userEvents.UPDATE_USER_FAILED);
+				}
 			},
 			error:(err) => {
 				console.log(err);

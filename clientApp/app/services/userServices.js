@@ -14,6 +14,10 @@ class userServices {
         return user ? user.emailAddress : null;
     }
 
+    getUser = () => {
+        return userStore.getUser();
+    }
+
 }
 
 const _userServices = new userServices();

@@ -1,28 +1,47 @@
-const { connect } = require("mongodb");
 const userData = require("../dataAccess/userData");
-const dbHelper = require("../helper/dbHelper");
-
 
 module.exports ={
     updateUser: async (firstName, lastName, phoneNumber, address, emailAddress, password, oldEmailAddress) => {
-		await userData.updateUser(firstName, lastName, phoneNumber, address, emailAddress, password, oldEmailAddress);
+        let hasUser = await userData.hasUser(oldEmailAddress);
+
+        if (!hasUser) {
+            return null;
+        } else {
+            await userData.updateUser(firstName, lastName, phoneNumber, address, emailAddress, password, oldEmailAddress);
+
+            let user = await userData.getUser(emailAddress, password);
+
+            if (user.length > 0) {
+                return {
+                    user: user[0]
+                };
+            } else {
+                return null;
+            }
+        }
     },
     setUser: async (firstName, lastName, phoneNumber, address, emailAddress, password) => {
-        await userData.setUser(firstName, lastName, phoneNumber, address, emailAddress, password);
+        let hasUser = await userData.hasUser(emailAddress);
 
-        let user = await userData.getUser(emailAddress, password);
-
-        if (user.length > 0) {
-            let token = Math.floor(new Date().getTime() / 1000).toString();
-            
-            await userData.setLogIn(emailAddress, token, new Date());
-
-            return {
-                user: user[0],
-                token: token
-            };
-        } else {
+        if (hasUser) {
             return null;
+        } else {
+            await userData.setUser(firstName, lastName, phoneNumber, address, emailAddress, password);
+
+            let user = await userData.getUser(emailAddress, password);
+
+            if (user.length > 0) {
+                let token = Math.floor(new Date().getTime() / 1000).toString();
+                
+                await userData.setLogIn(emailAddress, token, new Date());
+
+                return {
+                    user: user[0],
+                    token: token
+                };
+            } else {
+                return null;
+            }
         }
     },
     setLogIn: async (emailAddress, password) => {

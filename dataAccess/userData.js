@@ -8,6 +8,11 @@ module.exports ={
 
         return user;
     },
+    hasUser: async (emailAddress)=>{
+        let user = await dbHelper.find(common.dbCollections.user, {emailAddress: emailAddress});
+
+        return user.length > 0;
+    },
     updateUser: async(firstName, lastName, phoneNumber, address, emailAddress, password, oldEmailAddress) => {
         await dbHelper.update(common.dbCollections.user, {
             firstName: firstName,
