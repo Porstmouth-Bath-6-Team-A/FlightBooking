@@ -31,7 +31,13 @@ export default class userLogin extends React.Component {
     }
 
     onLogin = () => {
-        userActions.setLogIn(this.refs.email.value, this.refs.password.value);
+        if (this.refs.email.value == '') {
+            alert('Please fill your email');
+        } else if (this.refs.password.value == '') {
+            alert('Please fill your password');
+        } else {
+            userActions.setLogIn(this.refs.email.value, this.refs.password.value);
+        }
     }
 
     render(){
