@@ -32,6 +32,13 @@ export default class user extends React.Component {
 
 	onRegister = () => {
 		let user = userServices.getUser();
+		if(this.refs.emailAddress.value == ''){
+			alert('Please fill your email');
+		}else if (this.refs.password.value == ''){
+			alert('Please fill your password');
+		}else if (this.refs.password.value != this.refs.confirmpassword.value){
+			alert('Please make sure the password are the same');
+		}else 
 
 		userActions.updateUser(this.refs.firstName.value, this.refs.lastName.value, 
 							this.refs.phoneNumber.value, this.refs.address.value, 
