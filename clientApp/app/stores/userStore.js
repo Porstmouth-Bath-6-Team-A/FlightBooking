@@ -68,7 +68,7 @@ class userStore extends EventEmitter {
 		});
 	}
 
-	setLoginData = (emailAddress, password) =>{
+	setLoginData = (emailAddress, password) => {
 		$.ajax({
 			method:"POST",
 			url: this._setLoginUrl,
@@ -103,6 +103,8 @@ class userStore extends EventEmitter {
 			datatype:'JSON',
 			contentType: 'application/json; charset=UTF-8',
 			success: (data) => {
+				this._user = null;
+				this._token = null;
 				this.emit(userEvents.SET_LOGOUT_DONE);
 			},
 			error:(err) => {
@@ -146,7 +148,7 @@ class userStore extends EventEmitter {
 				this.updateUserData(action.data.firstName, action.data.lastName, action.data.phoneNumber, action.data.address, action.data.emailAddress, action.data.password, action.data.oldEmailAddress);
 				break;
 			case userActions.SET_LOGIN:
-				this.setLogInData(action.data.emailAddress, action.data.password);
+				this.setLoginData(action.data.emailAddress, action.data.password);
 				break;
 			case userActions.SET_LOGOUT:
 				this.setLogOutData();
@@ -157,13 +159,10 @@ class userStore extends EventEmitter {
 		}
 	}
 
-	setUser = () => {
+	getUser = () => {
 		return this._user;
 	}
 
-	updateUser = () => {
-		return this._user;
-	}
 }
 
 

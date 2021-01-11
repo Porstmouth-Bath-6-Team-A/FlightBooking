@@ -1,4 +1,8 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+import userServices from '../../services/userServices';
+import userStore from '../../stores/userStore';
+import {userEvents} from '../../enums/events';
 
 export default class flights extends React.Component {
 
@@ -6,7 +10,13 @@ export default class flights extends React.Component {
         super();
     }
 
+    logout = () => {
+
+    }
+
     render(){
+        let emailAddress = userServices.getEmailAddress();
+
         return(
             <nav className="gtco-nav" role="navigation">
                 <div className="gtco-container">                    
@@ -18,8 +28,19 @@ export default class flights extends React.Component {
                             <ul>
                                 <li><a href="#!">Destinations</a></li>
                                 <li><a href="#!">Booking</a></li>
-                                <li><a href="#!">Contact</a></li>
-                                <li><a href="#!">Login</a></li>
+                                <li>
+                                    {!emailAddress && 
+                                        <Link to="/user/login">Login</Link>
+                                    }
+                                    {emailAddress && 
+                                        <Link to="/user/update">{emailAddress}</Link>
+                                    }
+                                </li>
+                                {emailAddress && 
+                                    <li onClick={this.logout}>
+                                        Logout
+                                    </li>
+                                }
                             </ul>	
                         </div>
                     </div>                    

@@ -12,13 +12,13 @@ module.exports ={
 
         let user = await userData.getUser(emailAddress, password);
 
-        if (user) {
+        if (user.length > 0) {
             let token = Math.floor(new Date().getTime() / 1000).toString();
             
             await userData.setLogIn(emailAddress, token, new Date());
 
             return {
-                user: user,
+                user: user[0],
                 token: token
             };
         } else {
@@ -28,13 +28,13 @@ module.exports ={
     setLogIn: async (emailAddress, password) => {
         let user = await userData.getUser(emailAddress, password);
 
-        if (user) {
+        if (user.length > 0) {
             let token = Math.floor(new Date().getTime() / 1000).toString();
             
             await userData.setLogIn(emailAddress, token, new Date());
 
             return {
-                user: user,
+                user: user[0],
                 token: token
             };
         } else {
@@ -44,7 +44,7 @@ module.exports ={
     getLogInToken: async (emailAddress, token) => {
         let login = await userData.getLogIn(token);
         
-        if (login) {
+        if (login.length > 0) {
             let diffMs = new Date () - login.updatedTokenTime;
             let diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); 
         

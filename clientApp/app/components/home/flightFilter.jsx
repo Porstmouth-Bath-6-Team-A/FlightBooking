@@ -67,7 +67,7 @@ export default class flightFilter extends React.Component {
                                                         <h3>Book Your Trip</h3>
                                                         <div className="row form-group">
                                                             <div className="col-md-12">
-                                                                <label for="activities">Departure</label>
+                                                                <label>Departure</label>
                                                                 <FromDestination onChange={this.props.onFromDestinationChange} 
                                                                     onSelect={this.props.onFromDistinationSelect}
                                                                     value={fromDestinationName}
@@ -77,7 +77,7 @@ export default class flightFilter extends React.Component {
                                                         </div>
                                                         <div className="row form-group">
                                                             <div className="col-md-12">
-                                                                <label for="destination">Destination</label>
+                                                                <label>Destination</label>
                                                                 <ToDestination onChange={this.props.onToDestinationChange} 
                                                                     onSelect={this.props.onToDistinationSelect}
                                                                     value={toDestinationName}
@@ -87,7 +87,7 @@ export default class flightFilter extends React.Component {
                                                         </div>                                                    
                                                         <div className="row form-group">
                                                             <div className="col-md-12">
-                                                                <label for="date-start">Departure Date</label>
+                                                                <label>Departure Date</label>
                                                                 <DatePicker className="form-control" 
                                                                             placeholderText={'select depeture date'}
                                                                             minDate={depetureMinDate} 
@@ -98,7 +98,7 @@ export default class flightFilter extends React.Component {
                                                         </div>
                                                         <div className="row form-group">
                                                             <div className="col-md-12">
-                                                                <label for="date-start">Return Date</label><br />
+                                                                <label>Return Date</label><br />
                                                                 <DatePicker className="form-control" 
                                                                             placeholderText={'select arrival date'}
                                                                             minDate={arrivalMinDate} 
@@ -109,7 +109,7 @@ export default class flightFilter extends React.Component {
                                                         </div>
                                                         <div className="row form-group">
                                                             <div className="col-md-12">
-                                                                <label for="destination">Adults</label>
+                                                                <label>Adults</label>
                                                                 <select onChange={e => this.onSelectAdults(e)} className="form-control">
                                                                     <option value="1">1</option>
                                                                     <option value="2">2</option>
@@ -120,7 +120,7 @@ export default class flightFilter extends React.Component {
                                                         </div>
                                                         <div className="row form-group">
                                                             <div className="col-md-12">
-                                                                <label for="destination">Children</label>
+                                                                <label>Children</label>
                                                                 <select onChange={e => this.onSelectChildren(e)} className="form-control">
                                                                     <option value="0">0</option>
                                                                     <option value="1">1</option>
@@ -132,7 +132,7 @@ export default class flightFilter extends React.Component {
                                                         </div>
                                                         <div className="row form-group">
                                                             <div className="col-md-12">
-                                                                <label for="destination">Cabin Class</label>
+                                                                <label>Cabin Class</label>
                                                                 <select className="form-control" onChange={this.onCabinClassChange}>
                                                                     <option value="">select a cabin className</option>
                                                                     {Object.keys(cabinClasses).map(key => {

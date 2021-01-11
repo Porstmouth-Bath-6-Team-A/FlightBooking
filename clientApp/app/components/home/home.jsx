@@ -3,6 +3,8 @@ import flightServices from '../../services/flightServices';
 import FlightFilter from '../home/flightFilter';
 import * as flightActions from '../../actions/flightActions';
 import moment from 'moment';
+import Footer from '../../components/common/footer';
+import Howto from '../../components/home/howto';
 
 export default class home extends React.Component {
 
@@ -129,29 +131,33 @@ export default class home extends React.Component {
         let infants = this.state.infants;
 
         return(
-            <FlightFilter cabinClasses={cabinClasses}
-                          fromPlaces={fromPlaces}
-                          onFromDestinationChange={this.onFromDestinationChange}
-                          onFromDistinationSelect={this.onFromDistinationSelect}
-                          fromDestinationName={fromDestinationName}
-                          toPlaces={toPlaces}
-                          onToDestinationChange={this.onToDestinationChange}
-                          onToDistinationSelect={this.onToDistinationSelect}
-                          fromDestinationKeyword={fromDestinationKeyword}
-                          toDestinationKeyword={toDestinationKeyword}
-                          toDestinationName={toDestinationName}
-                          fromDate={fromDate}
-                          toDate={toDate}
-                          adults={adults}
-                          children={children}
-                          infants={infants}
-                          onSelectAdults={this.onSelectAdults}
-                          onSelectChildren={this.onSelectChildren}
-                          onSelectInfants={this.onSelectInfants}
-                          findFlights={this.findFlights}
-                          onCabinClassChange={this.onCabinClassChange}
-                          onToDateChange={this.onToDateChange}
-                          onFromDateChange={this.onFromDateChange} />
+            <React.Fragment>
+                <FlightFilter cabinClasses={cabinClasses}
+                            fromPlaces={fromPlaces}
+                            onFromDestinationChange={this.onFromDestinationChange}
+                            onFromDistinationSelect={this.onFromDistinationSelect}
+                            fromDestinationName={fromDestinationName}
+                            toPlaces={toPlaces}
+                            onToDestinationChange={this.onToDestinationChange}
+                            onToDistinationSelect={this.onToDistinationSelect}
+                            fromDestinationKeyword={fromDestinationKeyword}
+                            toDestinationKeyword={toDestinationKeyword}
+                            toDestinationName={toDestinationName}
+                            fromDate={fromDate}
+                            toDate={toDate}
+                            adults={adults}
+                            children={children}
+                            infants={infants}
+                            onSelectAdults={this.onSelectAdults}
+                            onSelectChildren={this.onSelectChildren}
+                            onSelectInfants={this.onSelectInfants}
+                            findFlights={this.findFlights}
+                            onCabinClassChange={this.onCabinClassChange}
+                            onToDateChange={this.onToDateChange}
+                            onFromDateChange={this.onFromDateChange} />
+                <Howto />
+                <Footer />
+            </React.Fragment>
         );
     }
 
