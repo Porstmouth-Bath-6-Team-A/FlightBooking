@@ -39,8 +39,9 @@ export default class flights extends React.Component {
                         </div>
                         <div className="col-xs-8 text-right menu-1">
                             <ul>
-                                <li><a href="#!">Destinations</a></li>
+                                <li><Link to="/destination">Destinations</Link></li>
                                 <li><a href="#!">Booking</a></li>
+                                <li><Link to="/about">About us</Link></li>
                                 <li>
                                     {!emailAddress && 
                                         <Link to="/user/login">Login</Link>

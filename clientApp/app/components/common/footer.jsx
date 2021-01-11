@@ -19,28 +19,6 @@ export default class footer extends React.Component {
                                 </p>
                             </div>
                         </div>
-                        <div className="col-md-2 col-md-push-1">
-                            <div className="gtco-widget">
-                                <h3>Destination</h3>
-                                <ul className="gtco-footer-links">
-                                    <li><a href="#">Europe</a></li>
-                                    <li><a href="#">Australia</a></li>
-                                    <li><a href="#">Asia</a></li>
-                                    <li><a href="#">Africa</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div className="col-md-2 col-md-push-1">
-                            <div className="gtco-widget">
-                                <h3>Company</h3>
-                                <ul className="gtco-footer-links">
-                                    <li><a href="#">About</a></li>
-                                    <li><a href="faq.html">Help/FAQ</a></li>
-                                    <li><a href="#">Privacy</a></li>
-                                    <li><a href="#">Terms & Conditions</a></li>
-                                </ul>
-                            </div>
-                        </div>
                         <div className="col-md-3 col-md-push-1">
                             <div className="gtco-widget">
                                 <h3>Get In Touch</h3>

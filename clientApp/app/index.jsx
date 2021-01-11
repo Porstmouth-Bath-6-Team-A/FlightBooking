@@ -7,6 +7,8 @@ import detail from '../app/components/flight/detail';
 import booking from '../app/components/flight/booking';
 import userRegistration from '../app/components/user/userRegistration';
 import userUpdate from '../app/components/user/userUpdate';
+import about from '../app/components/about/about';
+import destination from '../app/components/destination/destination';
 import App from '../app/app';
 import userLogin from './components/user/userLogin';
 
@@ -21,6 +23,8 @@ ReactDOM.render(
                                 <Route exact path={"/flights/detail/:id"} component={detail}></Route>
                                 <Route exact path={"/booking"} component={booking}></Route>
                                 <Route exact path={"/user/update"} component={userUpdate}></Route>
+                                <Route exact path={"/about"} component={about}></Route>
+                                <Route exact path={"/destination"} component={destination}></Route>
                         </Switch>
                 </Router>
         </App>
